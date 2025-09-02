@@ -18,6 +18,12 @@ export default function Navigation() {
             >
               Demo Streaming
             </Link>
+            <Link
+              href="/demo-use-hook"
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors"
+            >
+              Demo Use Hook
+            </Link>
           </div>
           <div className="flex items-center">
             <h1 className="text-lg font-semibold text-gray-900">
