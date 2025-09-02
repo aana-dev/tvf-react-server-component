@@ -24,6 +24,12 @@ export default function Navigation() {
             >
               Demo Use Hook
             </Link>
+            <Link
+              href="/demo-static-dynamic"
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors"
+            >
+              Static vs Dynamic
+            </Link>
           </div>
           <div className="flex items-center">
             <h1 className="text-lg font-semibold text-gray-900">
