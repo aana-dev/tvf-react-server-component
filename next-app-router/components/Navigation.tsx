@@ -13,6 +13,18 @@ export default function Navigation() {
               Home
             </Link>
             <Link
+              href="/basic-server"
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors"
+            >
+              Basic Server
+            </Link>
+            <Link
+              href="/basic-client"
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors"
+            >
+              Basic Client
+            </Link>
+            <Link
               href="/demo-streaming"
               className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors"
             >
