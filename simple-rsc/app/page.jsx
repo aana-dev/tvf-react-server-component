@@ -1,6 +1,16 @@
 import { Suspense } from 'react';
 import { getAll } from '../data/db.js';
-import Like from './Like.jsx';
+
+export default function Page() {
+	return (
+		<>
+			<h1>Phần implement from scratch đến đây là hết</h1>
+			<Suspense fallback={<div>Loading albums...</div>}>
+				<Albums />
+			</Suspense>
+		</>
+	);
+}
 
 async function Albums() {
 	const albums = await getAll();
@@ -12,21 +22,9 @@ async function Albums() {
 					<div>
 						<h3 className="text-xl">{a.title}</h3>
 						<p>{a.songs.length} songs</p>
-						<Like />
 					</div>
 				</li>
 			))}
 		</ul>
-	);
-}
-
-export default async function Page() {
-	return (
-		<>
-			<h1 className="text-3xl mb-3">Spotifn’t</h1>
-			<Suspense fallback="Getting albums">
-				<Albums />
-			</Suspense>
-		</>
 	);
 }
