@@ -11,11 +11,11 @@
 
 ## Getting started
 
-Install dependencies using `npm` and start the Node development server:
+Install dependencies using `bun` and start the Node development server:
 
 ```bash
-npm i
-npm run dev
+bun i
+bun run dev
 ```
 
 This should trigger a build and start your server at http://localhost:3000.
