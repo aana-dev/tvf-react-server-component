@@ -108,7 +108,9 @@ async function build() {
 		logLevel: 'error',
 		entryPoints: [resolveApp('_client.jsx'), ...clientEntryPoints],
 		outdir: resolveBuild(),
-		splitting: true,
+		// enable code-splitting for shared dependencies between client components
+		// and the client runtime
+		splitting: true, 
 		write: false
 	});
 
@@ -145,15 +147,38 @@ serve(app, async (info) => {
 
 /** UTILS */
 
+function toFilePath(maybeUrlOrPath) {
+	// If it's already a URL object
+	if (maybeUrlOrPath instanceof URL) {
+		if (maybeUrlOrPath.protocol === 'file:') return fileURLToPath(maybeUrlOrPath);
+		// non-file URL -> return href (fallback) or throw depending on your needs
+		return maybeUrlOrPath.href;
+	}
+
+	// If it's a string, try to parse as URL; otherwise treat as fs path
+	if (typeof maybeUrlOrPath === 'string') {
+		try {
+			const url = new URL(maybeUrlOrPath);
+			if (url.protocol === 'file:') return fileURLToPath(url);
+			return maybeUrlOrPath; // a non-file URL string -> return as-is
+		} catch {
+			// not a URL string -> assume it's already a filesystem path
+			return maybeUrlOrPath;
+		}
+	}
+
+	return maybeUrlOrPath;
+}
+
 const appDir = new URL('./app/', import.meta.url);
 const buildDir = new URL('./build/', import.meta.url);
 
 function resolveApp(path = '') {
-	return fileURLToPath(new URL(path, appDir));
+	return toFilePath(new URL(path, appDir));
 }
 
 function resolveBuild(path = '') {
-	return fileURLToPath(new URL(path, buildDir));
+	return toFilePath(new URL(path, buildDir));
 }
 
 const reactComponentRegex = /\.jsx$/;
